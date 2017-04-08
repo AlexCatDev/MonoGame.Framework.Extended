@@ -1,5 +1,3 @@
-using Microsoft.Xna.Framework;
-
 namespace MonoGame.Framework.Extended
 {
     public interface ITransform
@@ -10,10 +8,8 @@ namespace MonoGame.Framework.Extended
         double Duration { get; set; }
 
         bool ClampTime { get; set; }
-        bool IsActive { get; set; }
         bool IsFinished { get; }
 
         EasingTypes Easing { get; set; }
-
     }
 }
