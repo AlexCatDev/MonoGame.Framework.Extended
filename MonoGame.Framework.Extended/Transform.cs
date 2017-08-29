@@ -16,41 +16,26 @@ namespace MonoGame.Framework.Extended
 
         public EasingTypes Easing { get; set; }
 
-        public bool ClampTime { get; set; }
-
         public double Duration {
             get {
                 return EndTime - StartTime;
             }
             set {
+                ElapsedTime = 0;
                 StartTime = 0;
                 EndTime = value;
             }
         }
 
-        public Transform(bool clampTime = true) {
-            this.ClampTime = clampTime;
-        }
-
         public void Update(GameTime gameTime) {
-            var time = ElapsedTime + gameTime.ToMS();
+            var time = ElapsedTime + gameTime.ElapsedMS();
 
-            if (ClampTime) {
-                if (time > EndTime)
-                    ElapsedTime = EndTime;
-                else
-                    ElapsedTime = time;
-            } else
+            if (time > EndTime)
+                ElapsedTime = EndTime;
+            else
                 ElapsedTime = time;
         }
 
-        public bool IsFinished {
-            get {
-                if (ElapsedTime >= Duration)
-                    return true;
-                else
-                    return false;
-            }
-        }
+        public bool IsFinished => ElapsedTime >= Duration;
     }
 }

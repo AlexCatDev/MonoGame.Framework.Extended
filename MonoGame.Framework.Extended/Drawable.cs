@@ -35,8 +35,6 @@ namespace MonoGame.Framework.Extended
             }
         }
 
-        public Vector2 Origin;
-
         public Color Color {
             get {
                 return ColorTransform.CurrentProgress;
@@ -61,9 +59,11 @@ namespace MonoGame.Framework.Extended
             }
         }
 
+        public Vector2 OriginOffset { get; set; }
+
         public Rectangle Bounds => new Rectangle(
-            (int)(Position.X + Origin.X), 
-            (int)(Position.Y + Origin.Y), 
+            (int)(Position.X), 
+            (int)(Position.Y), 
             (int)Size.X,  
             (int)Size.Y);
 
@@ -95,39 +95,27 @@ namespace MonoGame.Framework.Extended
 
         }
 
-        public Drawable(Texture2D texture, Vector2 position, Vector2 size, Color color, Vector2 origin) {
+        public Drawable(Texture2D texture, Vector2 size, Vector2 position, Color color) {
             this.Texture = texture;
             this.Position = position;
             this.Size = size;
             this.Color = color;
-            this.Origin = origin;
         }
 
-        public Drawable(Texture2D texture, Vector2 position, Vector2 size, Color color) {
-            this.Texture = texture;
-            this.Position = position;
-            this.Size = size;
-            this.Color = color;
-
-            this.Origin = size / 2f;
-        }
-
-        public Drawable(Texture2D texture, Vector2 position, Vector2 size) {
+        public Drawable(Texture2D texture, Vector2 size, Vector2 position) {
             this.Texture = texture;
             this.Position = position;
             this.Size = size;
 
             this.Color = Color.White;
-            this.Origin = size / 2f;
         }
 
-        public Drawable(Texture2D texture, Vector2 position) {
+        public Drawable(Texture2D texture, Vector2 size) {
             this.Texture = texture;
-            this.Position = position;
+            this.Position = Vector2.Zero;
 
-            this.Size = new Vector2(texture.Width, texture.Height);
+            this.Size = size;
             this.Color = Color.White;
-            this.Origin = Size / 2f;
         }
 
         public Drawable(Texture2D texture) {
@@ -136,7 +124,6 @@ namespace MonoGame.Framework.Extended
             this.Position = Vector2.Zero;
             this.Size = new Vector2(texture.Width, texture.Height);
             this.Color = Color.White;
-            this.Origin = Size / 2f;
         }
 
         public virtual void Update(GameTime gameTime) {
@@ -147,7 +134,7 @@ namespace MonoGame.Framework.Extended
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(Texture, Bounds, null, Color, Rotation, new Vector2(Texture.Width / (Size.X / Origin.X), Texture.Height / (Size.Y / Origin.Y)), SpriteEffect, Depth);
+            spriteBatch.Draw(Texture, Bounds, null, Color, Rotation, new Vector2((Texture.Width / 2), (Texture.Height / 2)), SpriteEffect, Depth);
         }
     }
 }
