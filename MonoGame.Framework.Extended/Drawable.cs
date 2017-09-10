@@ -13,7 +13,7 @@ namespace MonoGame.Framework.Extended
 
         public TransformFloat RotationTransform = new TransformFloat();
 
-        public Texture2D Texture;
+        public Texture2D Texture { get; set; }
 
         public Vector2 Position {
             get {
@@ -45,9 +45,9 @@ namespace MonoGame.Framework.Extended
             }
         }
 
-        public SpriteEffects SpriteEffect;
+        public SpriteEffects SpriteEffect { get; set; }
 
-        public float Depth;
+        public float Depth { get; set; }
 
         public float Rotation {
             get {
@@ -59,11 +59,9 @@ namespace MonoGame.Framework.Extended
             }
         }
 
-        public Vector2 OriginOffset { get; set; }
-
         public Rectangle Bounds => new Rectangle(
-            (int)(Position.X), 
-            (int)(Position.Y), 
+            (int)(Position.X + Size.X / 2), 
+            (int)(Position.Y + Size.Y / 2), 
             (int)Size.X,  
             (int)Size.Y);
 
@@ -134,7 +132,7 @@ namespace MonoGame.Framework.Extended
         }
 
         public virtual void Draw(SpriteBatch spriteBatch) {
-            spriteBatch.Draw(Texture, Bounds, null, Color, Rotation, new Vector2((Texture.Width / 2), (Texture.Height / 2)), SpriteEffect, Depth);
+            spriteBatch.Draw(Texture, Position, null, Color, Rotation, new Vector2(Texture.Width / 2f, Texture.Height / 2f), new Vector2(Size.X / Texture.Width, Size.Y / Texture.Height), SpriteEffect, Depth);
         }
     }
 }

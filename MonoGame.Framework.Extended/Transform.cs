@@ -16,6 +16,14 @@ namespace MonoGame.Framework.Extended
 
         public EasingTypes Easing { get; set; }
 
+        public void SwitchValues() {
+            T tStart = StartValue;
+            T tEnd = EndValue;
+
+            StartValue = tEnd;
+            EndValue = tStart;
+        }
+
         public double Duration {
             get {
                 return EndTime - StartTime;
@@ -28,7 +36,7 @@ namespace MonoGame.Framework.Extended
         }
 
         public void Update(GameTime gameTime) {
-            var time = ElapsedTime + gameTime.ElapsedMS();
+            double time = ElapsedTime + gameTime.ElapsedGameTime.TotalMilliseconds;
 
             if (time > EndTime)
                 ElapsedTime = EndTime;

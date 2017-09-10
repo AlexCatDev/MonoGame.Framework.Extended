@@ -44,8 +44,8 @@ namespace MonoGame.Framework.Extended
         }
 
         public static Vector2 ValueAt(double time, Vector2 val1, Vector2 val2, double startTime, double endTime, EasingTypes easing = EasingTypes.None) {
-            float current = (float)(time - startTime);
-            float duration = (float)(endTime - startTime);
+            double current = time - startTime;
+            double duration = endTime - startTime;
 
             if (duration == 0 || current == 0)
                 return val1;
