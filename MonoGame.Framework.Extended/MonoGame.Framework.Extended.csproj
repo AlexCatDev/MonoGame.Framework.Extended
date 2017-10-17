@@ -44,7 +44,6 @@
     <Compile Include="EasingTypes.cs" />
     <Compile Include="GameTimeExtensions.cs" />
     <Compile Include="Interpolation.cs" />
-    <Compile Include="ITransform.cs" />
     <Compile Include="MathUtils.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextureHelper.cs" />

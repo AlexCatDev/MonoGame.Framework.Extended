@@ -27,7 +27,7 @@ namespace MonoGame.Framework.Extended
         }
 
         public void Update(GameTime gameTime) {
-            delta += gameTime.ElapsedMS();
+            delta += gameTime.ElapsedGameTime.TotalMilliseconds;
 
             for (int i = 0; i < List.Count; i++) {
                 var drawable = (InnerList[i] as Drawable);

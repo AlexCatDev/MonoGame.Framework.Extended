@@ -2,7 +2,7 @@ using Microsoft.Xna.Framework;
 
 namespace MonoGame.Framework.Extended
 {
-    public abstract class Transform<T> : ITransform
+    public abstract class Transform<T>
     {
         public abstract T CurrentProgress { get; }
 
